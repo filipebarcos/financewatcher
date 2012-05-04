@@ -1,7 +1,6 @@
 class FeedsController < ApplicationController
-
+  
   def index
-    
   end
   
   def get_industry
