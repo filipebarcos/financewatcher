@@ -1020,3 +1020,17 @@ Started GET "/feeds/company/yhoo" for 127.0.0.1 at 2012-05-03 23:45:28 -0300
 Processing by FeedsController#get_company as XML
   Parameters: {"tickers"=>"yhoo"}
 Completed 200 OK in 1848ms (Views: 250.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateUsers (20120430215442)
+Migrating to CreateConfigurations (20120509025603)
+  [1m[35m (101.3ms)[0m  CREATE TABLE `configurations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (308.4ms)[0m  [1mCREATE UNIQUE INDEX `index_configurations_on_user_id` ON `configurations` (`user_id`)[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120509025603')
+Migrating to CreateTickers (20120509030720)
+  [1m[36m (135.9ms)[0m  [1mCREATE TABLE `tickers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `code` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (186.1ms)[0m  CREATE UNIQUE INDEX `index_tickers_on_code` ON `tickers` (`code`)
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120509030720')[0m
+Migrating to CreateConfigurationsTickersJoinTable (20120512030619)
+  [1m[35m (134.0ms)[0m  CREATE TABLE `configurations_tickers` (`configuration_id` int(11), `ticker_id` int(11)) ENGINE=InnoDB
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120512030619')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 

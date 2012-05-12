@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430215442) do
+ActiveRecord::Schema.define(:version => 20120512030619) do
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "configurations", ["user_id"], :name => "index_configurations_on_user_id", :unique => true
+
+  create_table "configurations_tickers", :id => false, :force => true do |t|
+    t.integer "configuration_id"
+    t.integer "ticker_id"
+  end
+
+  create_table "tickers", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "code",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tickers", ["code"], :name => "index_tickers_on_code", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name",          :null => false
