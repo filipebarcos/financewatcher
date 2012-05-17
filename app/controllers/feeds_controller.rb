@@ -4,7 +4,7 @@ class FeedsController < ApplicationController
   end
   
   def get_industry
-    render :xml => YahooIndustryFeed.fetch(params[:tickers])    
+    render :xml => YahooIndustryFeed.fetch(params[:tickers])
   end
   
   def get_company

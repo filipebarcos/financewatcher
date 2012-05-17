@@ -1034,3 +1034,66 @@ Migrating to CreateConfigurationsTickersJoinTable (20120512030619)
   [1m[35m (134.0ms)[0m  CREATE TABLE `configurations_tickers` (`configuration_id` int(11), `ticker_id` int(11)) ENGINE=InnoDB
   [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120512030619')[0m
   [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (0.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateUsers (20120430215442)
+Migrating to CreateConfigurations (20120509025603)
+Migrating to CreateTickers (20120509030720)
+Migrating to CreateConfigurationsTickersJoinTable (20120512030619)
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (91.3ms)[0m  DROP DATABASE IF EXISTS `financewatcher_test`
+  [1m[36m (0.5ms)[0m  [1mCREATE DATABASE `financewatcher_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (53.1ms)[0m  CREATE TABLE `configurations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (193.4ms)[0m  [1mCREATE UNIQUE INDEX `index_configurations_on_user_id` ON `configurations` (`user_id`)[0m
+  [1m[35m (117.7ms)[0m  CREATE TABLE `configurations_tickers` (`configuration_id` int(11), `ticker_id` int(11)) ENGINE=InnoDB
+  [1m[36m (130.0ms)[0m  [1mCREATE TABLE `tickers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `code` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (138.0ms)[0m  CREATE UNIQUE INDEX `index_tickers_on_code` ON `tickers` (`code`)
+  [1m[36m (209.3ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `password_hash` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (172.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)
+  [1m[36m (147.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (161.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120512030619')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120430215442')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120509025603')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120509030720')[0m
+
+
+Started GET "/feeds/industry/yhoo" for 127.0.0.1 at 2012-05-17 00:50:13 -0300
+
+ActionController::RoutingError (undefined method `attr_accessible' for Feed:Class):
+  app/models/feed.rb:2:in `<class:Feed>'
+  app/models/feed.rb:1:in `<top (required)>'
+  app/controllers/feeds_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/filipebarcos/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (26.3ms)
+
+
+Started GET "/feeds/industry/yhoo" for 127.0.0.1 at 2012-05-17 00:50:24 -0300
+
+SyntaxError (/Users/filipebarcos/Desenvolvimento/ruby/financewatcher/app/models/feed.rb:2: unknown regexp options - attr
+/Users/filipebarcos/Desenvolvimento/ruby/financewatcher/app/models/feed.rb:2: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+  //attr_accessible :title, :link, :language, :d...
+                   ^
+/Users/filipebarcos/Desenvolvimento/ruby/financewatcher/app/models/feed.rb:2: syntax error, unexpected ',', expecting tCOLON2 or '[' or '.'
+.../attr_accessible :title, :link, :language, :description, :co...
+...                               ^):
+  app/controllers/feeds_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/filipebarcos/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.8ms)
+  Rendered /Users/filipebarcos/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.8ms)
+  Rendered /Users/filipebarcos/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (31.5ms)
+
+
+Started GET "/feeds/industry/yhoo" for 127.0.0.1 at 2012-05-17 00:50:33 -0300
+Processing by FeedsController#get_industry as XML
+  Parameters: {"tickers"=>"yhoo"}
+Completed 200 OK in 2515ms (Views: 209.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/feeds/industry/yhoo" for 127.0.0.1 at 2012-05-17 00:51:07 -0300
+Processing by FeedsController#get_industry as XML
+  Parameters: {"tickers"=>"yhoo"}
+Completed 200 OK in 286ms (Views: 32.8ms | ActiveRecord: 0.0ms)

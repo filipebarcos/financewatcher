@@ -1,9 +1,9 @@
 class UsersController < ActionController::Base
-  
+
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(params[:user])
 
@@ -13,7 +13,7 @@ class UsersController < ActionController::Base
       render :new
     end
   end
-      
+
   def destroy
     if params[:id] == current_user.id
       @user = User.find_by_id(params[:id])
@@ -24,5 +24,5 @@ class UsersController < ActionController::Base
     end
     redirect_to root_path
   end
-  
+
 end

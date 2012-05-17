@@ -141,3 +141,40 @@
   [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
   [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
   [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (1.4ms)[0m  [1mTRUNCATE TABLE `users`[0m
+  [1m[35m (1.1ms)[0m  TRUNCATE TABLE `configurations`
+  [1m[36m (1.1ms)[0m  [1mTRUNCATE TABLE `tickers`[0m
+  [1m[35m (0.1ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 FROM `users` WHERE `users`.`email` = BINARY 'filipe1@financewatcher.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `users` (`created_at`, `email`, `name`, `password_hash`, `password_salt`, `updated_at`) VALUES ('2012-05-16 02:28:35', 'filipe1@financewatcher.com', 'Filipe Costa', '370b11ecfbb731d461f7f1802dfc6a0b695ec974', '3c1a170bbc9915d5578e60277271af5f3c486689', '2012-05-16 02:28:35')[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-15 23:28:35 -0300
+Processing by FeedsController#index as HTML
+  Rendered feeds/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 73ms (Views: 72.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 FROM `users` WHERE `users`.`email` = BINARY '' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 FROM `users` WHERE `users`.`email` = BINARY '' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 FROM `users` WHERE `users`.`email` = BINARY '' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
