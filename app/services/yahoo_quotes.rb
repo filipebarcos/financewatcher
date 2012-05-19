@@ -10,8 +10,26 @@ class YahooQuotes
   end
 
   def fetch(tickers)
+    quotes = []
     Excelsior::Reader.rows(HTTParty.get(@base_uri + tickers + @format_options).body) do |row|
-      puts row[0]
+      quotes << Quotes.new({
+        :ask => row[0],
+        :bid => row[1],
+        :book_value => row[2],
+        :bid_size => row[3],
+        :comission => row[4],
+        :change => row[5],
+        :dividend => row[6],
+        :last_trade_date => row[7],
+        :earnings => row[8],
+        :days_high => row[9],
+        :days_low => row[10],
+        :symbol => row[11],
+        :volume => row[12],
+        :exchange => row[13],
+        :name => row[14],
+        :days_range => row[15]
+      })
     end
   end
 
