@@ -1,17 +1,18 @@
+require 'excelsior'
 require 'httparty'
 
 class YahooQuotes
   include HTTParty
 
-  attr_accessor :format_options
-
   def initialize
-    base_uri 'http://finance.yahoo.com/d/quotes.csv?s='
-    format_options = "&f=abb4b6cc3c1dd1d2ehge7svxnm"
+    @base_uri = "http://finance.yahoo.com/d/quotes.csv?s="
+    @format_options = "&f=abb4b6c3c1dd1d2ehgsvxnm"
   end
 
-  def self.fetch(tickers)
-    get(base_uri + tickers + format_options)
+  def fetch(tickers)
+    Excelsior::Reader.rows(HTTParty.get(@base_uri + tickers + @format_options).body) do |row|
+      puts row[0]
+    end
   end
 
 end

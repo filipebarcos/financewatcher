@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'mysql2'
 gem 'httparty'
-gem 'nokogiri'
+gem 'excelsior'
 
 group :development do
   gem "pry", :require => false

@@ -44,6 +44,7 @@ GEM
     coderay (1.0.6)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    excelsior (0.1.0)
     factory_girl (3.0.0)
       activesupport (>= 3.0.0)
     factory_girl-preload (2.0.0)
@@ -138,11 +139,11 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   capybara
+  excelsior
   factory_girl
   factory_girl-preload
   httparty
   mysql2
-  nokogiri
   pry
   rails (= 3.2.3)
   rspec-rails
